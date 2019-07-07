@@ -85,6 +85,7 @@ class ParallaxScrollView extends Component {
 			renderContentBackground,
 			renderFixedHeader,
 			renderForeground,
+			renderForegroundExtra,
 			renderParallaxHeader,
 			renderScrollComponent,
 			renderStickyHeader,
@@ -108,7 +109,8 @@ class ParallaxScrollView extends Component {
 			fadeOutForeground,
 			parallaxHeaderHeight,
 			stickyHeaderHeight,
-			renderForeground: renderForeground || renderParallaxHeader
+			renderForeground: renderForeground || renderParallaxHeader,
+			renderForegroundExtra,
 		})
 		const bodyComponent = this._wrapChildren(children, {
 			contentBackgroundColor,
@@ -279,7 +281,8 @@ class ParallaxScrollView extends Component {
 		fadeOutForeground,
 		parallaxHeaderHeight,
 		stickyHeaderHeight,
-		renderForeground
+		renderForeground,
+		renderForegroundExtra,
 	}) {
 		const { scrollY } = this
 		const p = pivotPoint(parallaxHeaderHeight, stickyHeaderHeight)
@@ -304,6 +307,7 @@ class ParallaxScrollView extends Component {
 						{renderForeground()}
 					</View>
 				</Animated.View>
+				{typeof renderForegroundExtra === 'function' && renderForegroundExtra()}
 			</View>
 		)
 	}
